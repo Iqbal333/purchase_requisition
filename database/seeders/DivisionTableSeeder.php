@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 
-class RoleTableSeeder extends Seeder
+class DivisionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'superadmin']);
+        //
     }
 }

@@ -59,6 +59,15 @@
                         </li>
                         @endcan
 
+                        @can('division-list')
+                        <li class="sidebar-item">
+                            <a href="{{ url('division') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Division</span>
+                            </a>
+                        </li>
+                        @endcan
+
                         <li class="sidebar-title">Forms &amp; Tables</li>
 
                         <li

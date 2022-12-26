@@ -5,9 +5,8 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Input</h3>
-                <p class="text-subtitle text-muted">Give textual form controls like input upgrade with custom styles,
-                    sizing, focus states, and more.</p>
+                <h3>Permintaan Barang</h3>
+                <p class="text-subtitle text-muted">Ajukan barang yang dibutuhkan sesuai kebutuhanmu.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -23,20 +22,19 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Basic Inputs</h4>
+                    <h4 class="card-title">Permintaan Barang</h4>
                 </div>
 
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="basicInput">Basic Input</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                                <label for="basicInput">Nama</label>
+                                <input type="text" value="{{ auth()->user()->name }}" name="name" readonly class="form-control" id="basicInput" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="helpInputTop">Input text with help</label>
-                                <small class="text-muted">eg.<i>someone@example.com</i></small>
+                                <label for="helpInputTop">Jumlah</label>
                                 <input type="text" class="form-control" id="helpInputTop">
                             </div>
 
@@ -48,19 +46,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="disabledInput">Disabled Input</label>
-                                <input type="text" class="form-control" id="disabledInput" placeholder="Disabled Text"
-                                    disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="disabledInput">Readonly Input</label>
-                                <input type="text" class="form-control" id="readonlyInput" readonly="readonly"
-                                    value="You can't update me :P">
+                                <label for="basicInput">Nama Barang</label>
+                                <input type="text" class="form-control" id="basicInput" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="disabledInput">Static Text</label>
-                                <p class="form-control-static" id="staticInput">email@mazer.com</p>
+                                <label for="helpInputTop">Jumlah</label>
+                                <input type="text" class="form-control" id="helpInputTop">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="helperText">With Helper Text</label>
+                                <input type="text" id="helperText" class="form-control" placeholder="Name">
+                                <p><small class="text-muted">Find helper text here for given textbox.</small></p>
                             </div>
                         </div>
                     </div>

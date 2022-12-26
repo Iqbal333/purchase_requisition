@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DivisionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
@@ -35,4 +36,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('posts', PostController::class);
 
     Route::resource('request_items', RequestItemsController::class);
+    Route::resource('division', DivisionController::class);
 });

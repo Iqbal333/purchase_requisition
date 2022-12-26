@@ -31,8 +31,11 @@ class PermissionTableSeeder extends Seeder
             'post-create',
             'post-edit',
             'post-delete',
+            'division-list',
+            'division-create',
+            'division-edit',
+            'division-delete',
             'request_items-list'
-
         ];
 
         foreach ($data as $permission) {

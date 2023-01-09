@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RequestItem;
 use Illuminate\Http\Request;
 
 class RequestItemsController extends Controller
@@ -22,7 +23,8 @@ class RequestItemsController extends Controller
 
     public function index()
     {
-        return view('request_items.index');
+        $request_items = RequestItem::latest()->get();
+        return view('request_items.index', compact('request_items'));
     }
 
     /**

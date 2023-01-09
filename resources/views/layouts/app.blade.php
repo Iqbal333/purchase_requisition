@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Dashboard - Purchase Requisition Dashboard</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png">
-
-<link rel="stylesheet" href="assets/css/shared/iconly.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/simple-datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
 
 </head>
 
@@ -54,7 +56,7 @@
                             class="sidebar-item ">
                             <a href="{{ url('request_items') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Ajukan Barang</span>
+                                <span>Request Items</span>
                             </a>
                         </li>
                         @endcan
@@ -64,6 +66,15 @@
                             <a href="{{ url('division') }}" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Division</span>
+                            </a>
+                        </li>
+                        @endcan
+
+                        @can('employee-list')
+                        <li class="sidebar-item">
+                            <a href="{{ url('employee') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Employee</span>
                             </a>
                         </li>
                         @endcan
@@ -248,11 +259,11 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
+                        <p>2022 &copy; Purchase Requisition</p>
                     </div>
                     <div class="float-end">
                         <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="https://saugi.me">Saugi</a></p>
+                                href="javascript:void()">Muhammad Iqbal</a></p>
                     </div>
                 </div>
             </footer>
@@ -265,6 +276,10 @@
 <!-- Need: Apexcharts -->
 <script src="{{ asset('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+<script src="{{ asset('assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+<script src="{{ asset('assets/js/pages/simple-datatables.js') }}"></script>
+<script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
+<script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
 
 </body>
 

@@ -16,7 +16,7 @@
                 @endcan
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table class="table table-hover" id="table1">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
@@ -44,7 +44,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $data->appends($_GET)->links() }}
+                {{-- {{ $data->appends($_GET)->links() }} --}}
             </div>
         </div>
     </div>

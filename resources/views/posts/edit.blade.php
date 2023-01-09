@@ -13,7 +13,7 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">Create post
+            <div class="card-header">Edit post
                 <span class="float-right">
                     <a class="btn btn-primary" href="{{ route('posts.index') }}">Posts</a>
                 </span>

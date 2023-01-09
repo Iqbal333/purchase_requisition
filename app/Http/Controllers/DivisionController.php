@@ -24,9 +24,9 @@ class DivisionController extends Controller
 
     public function index()
     {
-        $data = Division::latest()->paginate(5);
+        $divisions = Division::latest()->get();
 
-        return view('division.index', compact('data'));
+        return view('division.index', compact('divisions'));
     }
 
     /**
@@ -67,7 +67,9 @@ class DivisionController extends Controller
      */
     public function show($id)
     {
-        //
+        $division = Division::find($id);
+
+        return view('division.show', compact('division'));
     }
 
     /**
@@ -97,9 +99,8 @@ class DivisionController extends Controller
         $request->validate([
             'division_name' => [
                 'required',
-                Rule::unique('companies', 'division_name')->ignore($division->id)
+                Rule::unique('divisions', 'division_name')->ignore($division->id)
             ],
-            'type' => 'required|in:AKAP,AKDP'
         ]);
 
         $division->division_name = $request->division_name;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -118,9 +119,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::find($id)->delete();
+        $employee = Employee::findOrFail($id);
 
-        return redirect()->route('posts.index')
-            ->with('success', 'Post deleted successfully.');
+        $employee->delete();
+
+        return redirect('employee')->with('success', 'Berhasil menghapus data karyawan');
     }
 }

@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('division_id')->constrained('divisions');
+            $table->string('position_name', 50);
+            $table->string('nik', 30);
+            $table->string('employee_name', 50);
+            $table->string('phone_number', 15);
+            $table->text('address');
             $table->timestamps();
         });
     }

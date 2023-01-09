@@ -14,4 +14,9 @@ class Division extends Model
     protected $fillable = [
         'division_name'
     ];
+
+    public function employee()
+    {
+        return $this->hasMany('App\Models\Employee');
+    }
 }

@@ -16,7 +16,7 @@
                 @endcan
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table class="table table-hover" id="table1">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $key => $division)
+                        @foreach ($divisions as $key => $division)
                             <tr>
                                 <td>{{ $division->id }}</td>
                                 <td>{{ $division->division_name }}</td>
@@ -44,7 +44,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $data->appends($_GET)->links() }}
             </div>
         </div>
     </div>

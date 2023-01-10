@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cara Membuat Format Uang Rupiah dengan jQuery</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" id="rupiah" data-a-sign="Rp. " data-a-dec="," data-a-sep=".">
+    </form>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="autoNumeric.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#rupiah').autoNumeric('init');
+    });
+</script>
+
+</html>

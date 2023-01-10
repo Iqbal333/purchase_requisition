@@ -280,7 +280,9 @@
 <script src="{{ asset('assets/js/pages/simple-datatables.js') }}"></script>
 <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
 <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+@stack('scripts')
 
 </body>
-
 </html>

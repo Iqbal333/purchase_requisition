@@ -27,299 +27,168 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="helpInputTop">No Pengajuan</label>
+                                <input type="text" class="form-control" id="helpInputTop">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="basicInput">Nama</label>
                                 <input type="text" value="{{ auth()->user()->name }}" name="name" readonly class="form-control" id="basicInput" placeholder="">
                             </div>
+                        </div>
 
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="helpInputTop">Jumlah</label>
+                                <label for="helpInputTop">Division</label>
                                 <input type="text" class="form-control" id="helpInputTop">
                             </div>
-
-                            <div class="form-group">
-                                <label for="helperText">With Helper Text</label>
-                                <input type="text" id="helperText" class="form-control" placeholder="Name">
-                                <p><small class="text-muted">Find helper text here for given textbox.</small></p>
-                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="basicInput">Nama Barang</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="">
-                            </div>
 
-                            <div class="form-group">
-                                <label for="helpInputTop">Jumlah</label>
-                                <input type="text" class="form-control" id="helpInputTop">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="helperText">With Helper Text</label>
-                                <input type="text" id="helperText" class="form-control" placeholder="Name">
-                                <p><small class="text-muted">Find helper text here for given textbox.</small></p>
-                            </div>
+                        <div class="form-group">
+                            <label for="helperText">Description</label>
+                            <p><small class="text-muted">Find helper text here for given textbox.</small></p>
+                            <textarea name="description" class="form-control" id="" cols="10" rows="5"></textarea>
                         </div>
                     </div>
+
+                    <div class="table-responsive mt-5">
+                        <label for="">Detail Item</label>
+                        <table class="table mt-5" id="t_item">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Unit</th>
+                                    <th>Unit Price</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                    <th>Remarks</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(old('_token'))
+                                    @foreach (old('item') as $key => $val)
+
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="item[{{ $key }}]" id="item_{{ $key }}" class="form-control" value="{{ old('item')[$key] }}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="unit[{{ $key }}]" id="unit_{{ $key }}" class="form-control" value="{{ old('unit')[$key] }}">
+                                        </td>
+                                        <td>
+                                            <input type="number" name="unit_price[{{ $key }}]" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}">
+                                        </td>
+                                        <td>
+                                            <input type="number" name="qty[{{ $key }}]" id="qty_{{ $key }}" class="form-control" value="{{ old('qty')[$key] }}">
+                                        </td>
+                                        <td>
+                                            <input type="number" name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="remark[{{ $key }}]" id="remark_{{ $key }}" class="form-control" value="{{ old('remark')[$key] }}">
+                                        </td>
+                                        <td>
+                                            {!! $key !==0 ? '<button type="button" class="btn btn-sm btn-danger btn-delete" >X</button> ' : '' !!}
+                                        </td>
+                                    </tr>
+
+                                    @endforeach
+
+                                @else
+
+                                <tr>
+                                    <td>
+                                        <input type="text" name="item[0]" id="item_0" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="unit[0]" id="unit_0" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="unit_price[0]" id="unit_price_0" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="qty[0]" id="qty_0" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="total[0]" id="total_0" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="remark[0]" id="remark_0" class="form-control">
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                @endif
+
+                            </tbody>
+                            <tfoot>
+                                <td colspan="7">
+                                    <button class="btn btn-sm btn-info" id="btn_add" type="button">+ Add Item</button>
+                                </td>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <button class="btn btn-md btn-primary float-end" id="btn_save" type="submit">Save</button>
+
                 </div>
             </div>
         </section>
-
-        <!-- Input Style start -->
-        <section id="input-style">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Input Styles</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>To set rounded border to input box, use <code>.round</code> class and
-                                        to set square border to input box, use <code>.sqaure</code> class alongwith
-                                        <code>.form-control</code> class.
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="roundText">Rounded Input</label>
-                                        <input type="text" id="roundText" class="form-control round"
-                                            placeholder="Rounded Input">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="squareText">Square Input</label>
-                                        <input type="text" id="squareText" class="form-control square"
-                                            placeholder="Square Input">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Input Style end -->
-
-        <!-- Horizontal Input start -->
-        <section id="horizontal-input">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Horizontal Input</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>To make label in center of form-control, use <code>.col-form-label</code> class with
-                                        <code>&lt;label&gt;</code> element. This is default bootstrap class.
-                                    </p>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row align-items-center">
-                                        <div class="col-lg-2 col-3">
-                                            <label class="col-form-label">First Name</label>
-                                        </div>
-                                        <div class="col-lg-10 col-9">
-                                            <input type="text" id="first-name" class="form-control" name="fname"
-                                                placeholder="First Name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row align-items-center">
-                                        <div class="col-lg-2 col-3">
-                                            <label class="col-form-label">Last Name</label>
-                                        </div>
-                                        <div class="col-lg-10 col-9">
-                                            <input type="text" id="last-name" class="form-control" name="fname"
-                                                placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Horizontal Input end -->
-
-        <!-- Basic File Browser start -->
-        <section id="input-file-browser">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">File Input</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label">Default file input example</label>
-                                        <input class="form-control" type="file" id="formFile">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="formFileMultiple" class="form-label">Multiple files input
-                                            example</label>
-                                        <input class="form-control" type="file" id="formFileMultiple" multiple>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="formFileDisabled" class="form-label">Disabled file input example</label>
-                                        <input class="form-control" type="file" id="formFileDisabled" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-
-                                    <div class="mb-3">
-                                        <label for="formFileSm" class="form-label">Small file input example</label>
-                                        <input class="form-control form-control-sm" id="formFileSm" type="file">
-                                    </div>
-                                    <div>
-                                        <label for="formFileLg" class="form-label">Large file input example</label>
-                                        <input class="form-control form-control-lg" id="formFileLg" type="file">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Basic File Browser end -->
-
-        <!-- Input with Icons start -->
-        <section id="input-with-icons">
-            <div class="row match-height">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Input with Icons</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>For Input Box with icon use <code>.position-relative</code> class with
-                                        <code>.form-group</code> and use class <code>.has-icon-left</code> or
-                                        <code>.has-icon-right</code> class for icon on
-                                        left side.
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h6>Left Icon</h6>
-                                    <div class="form-group position-relative has-icon-left">
-                                        <input type="text" class="form-control is-invalid" placeholder="Input with icon left">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h6>Right Icon</h6>
-                                    <div class="form-group position-relative has-icon-right">
-                                        <input type="text" class="form-control" placeholder="Icon Right, Default Input">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-bookmarks"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Input with Icons end -->
-
-        <!-- Input Sizing start -->
-        <section id="input-sizing">
-            <div class="row match-height">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Control Sizing Option</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>For different sizes of Input, Use classes like <code>.form-control-lg</code> &amp;
-                                        <code>.form-control-sm</code> for Large, Small input box.
-                                    </p>
-                                </div>
-                                <div class="col-sm-4">
-                                    <h6>Large</h6>
-                                    <input class="form-control form-control-lg" type="text" placeholder="Large Input">
-                                </div>
-                                <div class="col-sm-4">
-                                    <h6>Default</h6>
-                                    <input class="form-control" type="text" placeholder="Default Input">
-                                </div>
-                                <div class="col-sm-4">
-                                    <h6>Small</h6>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Small Input">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Input Sizing end -->
-
-        <!-- validations start -->
-        <section id="input-validation">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Input Validation States</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>You can indicate invalid and valid form fields with <code>.is-invalid</code> and
-                                        <code>.is-valid</code>. Note that <code>.invalid-feedback</code> is also supported
-                                        with these classes.
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="valid-state">Valid State</label>
-                                    <input type="text" class="form-control is-valid" id="valid-state" placeholder="Valid"
-                                        value="Valid" required>
-                                    <div class="valid-feedback">
-                                        <i class="bx bx-radio-circle"></i>
-                                        This is valid state.
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="invalid-state">Invalid State</label>
-                                    <input type="text" class="form-control is-invalid" id="invalid-state"
-                                        placeholder="Invalid" value="Invalid" required>
-                                    <div class="invalid-feedback">
-                                        <i class="bx bx-radio-circle"></i>
-                                        This is invalid state.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- validations end -->
 
     </div>
 </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+
+            let count = {{ old('_token') ? count(old('item')) : 0 }};
+
+            $('#btn_add').on('click', function() {
+                count += 1
+
+                let row = `
+                    <tr>
+                        <td>
+                            <input type="text" name="item[${count}]" id="item_${count}" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" name="unit[${count}]" id="unit_${count}" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" name="unit_price[${count}]" id="unit_price_${count}" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" name="qty[${count}]" id="qty_${count}" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" name="total[${count}]" id="total_${count}" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" name="remark[${count}]" id="remark_${count}" class="form-control">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger btn-delete">X</button>
+                        </td>
+                    </tr>
+                `
+
+                $('#t_item tbody').append(row)
+                })
+
+                $('#t_item').on('click', '.btn-delete', function() {
+                    $(this).closest('tr').remove()
+                })
+
+                $('#formAdd').validate()
+        })
+    </script>
+@endpush

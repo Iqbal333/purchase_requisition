@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
 use App\Models\RequestItem;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,8 @@ class RequestItemsController extends Controller
      */
     public function create()
     {
-        //
+        $divisions = Division::get();
+        return view('request_items.create', compact('divisions'));
     }
 
     /**

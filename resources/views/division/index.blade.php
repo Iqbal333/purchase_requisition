@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+
+<div class="page-heading">
+    <h3>Division</h3>
+</div>
+
 <div class="container">
     <div class="justify-content-center">
         @if (\Session::has('success'))

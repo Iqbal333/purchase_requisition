@@ -57,7 +57,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <strong>Employee Name:</strong>
-                                <input type="text" name="employee_name" value="{{ Auth::user()->name }}" placeholder="Nama Karyawan" class="form-control">
+                                <input type="text" name="employee_name" value="" placeholder="Nama Karyawan" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4">

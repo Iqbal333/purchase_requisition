@@ -42,10 +42,22 @@
                             </div>
                         </div>
 
+                        {{-- <div>
+                            <h3 style="font-variant: small-caps;">penjumlahan dalam bentuk perkalian [*]</h3>
+                            <input name="harga" id="harga" onkeyup="sumHM();" >
+                            <input name="jumlah" id="jumlah" onkeyup="sumHM();" >
+                            <input name="total" id="total">
+                        </div> --}}
+
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="helpInputTop">Division</label>
-                                <input type="text" class="form-control" id="helpInputTop">
+                                <strong>Division:</strong>
+                                <select name="division_id" id="division" class="form-select choices" required>
+                                    <option value="" selected hidden>--Choose Division--</option>
+                                    @foreach($divisions as $division)
+                                        <option value="{{ $division->id ?? '' }}">{{ $division->division_name ?? '' }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -54,15 +66,20 @@
                             <p><small class="text-muted">Find helper text here for given textbox.</small></p>
                             <textarea name="description" class="form-control" id="" cols="10" rows="5"></textarea>
                         </div>
+
+                        {{-- <label for="">Test Format Rupiah</label>
+                        <div class="input-group mb-3 mt-2">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                            <input type="text" class="form-control tanpa-rupiah" placeholder="Harga" aria-label="Harga" aria-describedby="basic-addon1">
+                        </div> --}}
                     </div>
 
-                    <div class="table-responsive mt-5">
+                    <div class="table-responsive mt-2">
                         <label for="">Detail Item</label>
-                        <table class="table mt-5" id="t_item">
+                        <table class="table mt-2" id="t_item">
                             <thead>
                                 <tr>
                                     <th>Item</th>
-                                    <th>Unit</th>
                                     <th>Unit Price</th>
                                     <th>Qty</th>
                                     <th>Total</th>
@@ -79,13 +96,10 @@
                                             <input type="text" name="item[{{ $key }}]" id="item_{{ $key }}" class="form-control" value="{{ old('item')[$key] }}">
                                         </td>
                                         <td>
-                                            <input type="text" name="unit[{{ $key }}]" id="unit_{{ $key }}" class="form-control" value="{{ old('unit')[$key] }}">
+                                            <input type="number" name="unit_price[{{ $key }}]" onkeyup="sumHM();" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}">
                                         </td>
                                         <td>
-                                            <input type="number" name="unit_price[{{ $key }}]" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}">
-                                        </td>
-                                        <td>
-                                            <input type="number" name="qty[{{ $key }}]" id="qty_{{ $key }}" class="form-control" value="{{ old('qty')[$key] }}">
+                                            <input type="number" name="qty[{{ $key }}]" onkeyup="sumHM();" id="qty_{{ $key }}" class="form-control" value="{{ old('qty')[$key] }}">
                                         </td>
                                         <td>
                                             <input type="number" name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}">
@@ -105,9 +119,6 @@
                                 <tr>
                                     <td>
                                         <input type="text" name="item[0]" id="item_0" class="form-control">
-                                    </td>
-                                    <td>
-                                        <input type="text" name="unit[0]" id="unit_0" class="form-control">
                                     </td>
                                     <td>
                                         <input type="number" name="unit_price[0]" id="unit_price_0" class="form-control">
@@ -161,13 +172,10 @@
                             <input type="text" name="item[${count}]" id="item_${count}" class="form-control">
                         </td>
                         <td>
-                            <input type="text" name="unit[${count}]" id="unit_${count}" class="form-control">
-                        </td>
-                        <td>
                             <input type="number" name="unit_price[${count}]" id="unit_price_${count}" class="form-control">
                         </td>
                         <td>
-                            <input type="number" name="qty[${count}]" id="qty_${count}" class="form-control">
+                            <input type="number" name="qty[${count}]" id="qty_${count}" class="form-control tanpa-rupiah">
                         </td>
                         <td>
                             <input type="number" name="total[${count}]" id="total_${count}" class="form-control">
@@ -190,5 +198,46 @@
 
                 $('#formAdd').validate()
         })
+    </script>
+
+    <script type="text/javascript">
+        function sumHM()
+        {
+            var unit_price = document.getElementById('harga').value;
+            var qty = document.getElementById('jumlah').value;
+            var result = 0;
+            result = parseInt(unit_price) * parseInt(qty);
+
+            if (!isNaN(result)) {
+                document.getElementById('total').value = result;
+            }
+        }
+    </script>
+
+    <script>
+        /* Tanpa Rupiah */
+        var tanpa_rupiah = document.querySelectorAll('.tanpa-rupiah')[0];
+        tanpa_rupiah.addEventListener('keyup', function(e)
+        {
+            tanpa_rupiah.value = formatRupiah(this.value);
+        });
+
+        /* Fungsi */
+        function formatRupiah(angka, prefix)
+        {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split    = number_string.split(','),
+                sisa     = split[0].length % 3,
+                rupiah     = split[0].substr(0, sisa),
+                ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
     </script>
 @endpush

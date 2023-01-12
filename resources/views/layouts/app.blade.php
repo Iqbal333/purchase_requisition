@@ -61,6 +61,13 @@
                         </li>
                         @endcan
 
+                        <li class="sidebar-item ">
+                            <a href="javascript:void()" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Request List</span>
+                            </a>
+                        </li>
+
                         @can('division-list')
                         <li class="sidebar-item">
                             <a href="{{ url('division') }}" class="sidebar-link">
@@ -78,57 +85,6 @@
                             </a>
                         </li>
                         @endcan
-
-                        <li class="sidebar-title">Forms &amp; Tables</li>
-
-                        <li
-                            class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-hexagon-fill"></i>
-                                <span>Form Elements</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="form-element-input.html">Input</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-input-group.html">Input Group</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-select.html">Select</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-radio.html">Radio</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-checkbox.html">Checkbox</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="form-element-textarea.html">Textarea</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-title">Extra UI</li>
-
-                        <li
-                            class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-pentagon-fill"></i>
-                                <span>Widgets</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="ui-widgets-chatbox.html">Chatbox</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="ui-widgets-pricing.html">Pricing</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="ui-widgets-todolist.html">To-do List</a>
-                                </li>
-                            </ul>
-                        </li>
 
                         <li class="sidebar-title">Pages</li>
 
@@ -215,16 +171,9 @@
                         <li class="sidebar-title">Raise Support</li>
 
                         <li class="sidebar-item  ">
-                            <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
+                            <a href="javascript:void()" class='sidebar-link'>
                                 <i class="bi bi-life-preserver"></i>
                                 <span>Documentation</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item  ">
-                            <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class='sidebar-link'>
-                                <i class="bi bi-puzzle"></i>
-                                <span>Contribute</span>
                             </a>
                         </li>
 
@@ -249,9 +198,6 @@
                 </a>
             </header>
 
-            <div class="page-heading">
-                <h3>Profile Statistics</h3>
-            </div>
             <div class="page-content">
                 @yield('content')
             </div>

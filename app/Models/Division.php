@@ -19,4 +19,9 @@ class Division extends Model
     {
         return $this->hasMany('App\Models\Employee');
     }
+
+    public function request_item()
+    {
+        return $this->hasMany('App\Models\RequestItem');
+    }
 }

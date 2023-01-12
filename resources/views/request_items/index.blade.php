@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+
+<div class="page-heading">
+    <h3>Daftar Permintaan Barang</h3>
+</div>
+
 <div class="container">
     <div class="justify-content-center">
         @if (\Session::has('success'))
@@ -9,7 +14,7 @@
         @endif
         <div class="card">
             <div class="card-header">Request Items
-                @can('role-create')
+                @can('request_items-create')
                     <span class="float-right">
                         <a class="btn btn-primary" href="{{ route('request_items.create') }}">New Request Items</a>
                     </span>

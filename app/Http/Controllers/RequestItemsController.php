@@ -47,7 +47,7 @@ class RequestItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //'price' => (float) str_replace('.', '', $request->price),
     }
 
     /**

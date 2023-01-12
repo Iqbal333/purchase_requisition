@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('request_id')->index();
+            $table->string('item', 50);
+            $table->double('unit_price', 11, 2);
+            $table->double('qty', 11, 2);
+            $table->double('total', 11, 2);
+            $table->text('remark')->nullable();
             $table->timestamps();
         });
     }

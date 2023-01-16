@@ -12,7 +12,7 @@ class Item extends Model
     protected $table = 'items';
 
     protected $fillable = [
-        'request_id',
+        'request_item_id',
         'item',
         'unit_price',
         'qty',

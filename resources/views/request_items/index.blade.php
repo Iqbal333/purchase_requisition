@@ -7,11 +7,9 @@
 
 <div class="container">
     <div class="justify-content-center">
-        @if (\Session::has('success'))
-            <div class="alert alert-success">
-                <p>{{ \Session::get('success') }}</p>
-            </div>
-        @endif
+
+        @include('includes.notification')
+
         <div class="card">
             <div class="card-header">Request Items
                 @can('request_items-create')
@@ -33,14 +31,16 @@
                         @foreach ($request_items as $key => $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->request_no }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('request_items.show',$item->id) }}">Show</a>
+                                    @can('request_items-show')
+                                        <a class="btn btn-success" href="{{ route('request_items.show', $item->id) }}">Show</a>
+                                    @endcan
                                     @can('request_items-edit')
-                                        <a class="btn btn-primary" href="{{ route('request_items.edit',$item->id) }}">Edit</a>
+                                        <a class="btn btn-primary" href="{{ route('request_items.edit', $item->id) }}">Edit</a>
                                     @endcan
                                     @can('request_items-delete')
-                                        {!! Form::open(['method' => 'DELETE','route' => ['request_items.destroy', $item->id],'style'=>'display:inline']) !!}
+                                        {!! Form::open(['method' => 'DELETE','route' => ['request_items.destroy', $item->id], 'onsubmit' => 'return confirm("Anda yakin akan menghapus data ini?")', 'style'=>'display:inline']) !!}
                                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
                                     @endcan

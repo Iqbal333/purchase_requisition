@@ -61,12 +61,14 @@
                         </li>
                         @endcan
 
+                        @can('list_request')
                         <li class="sidebar-item ">
-                            <a href="{{ url('request_items_approve') }}" class='sidebar-link'>
+                            <a href="{{ url('list_request') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Request List</span>
+                                <span>List Request</span>
                             </a>
                         </li>
+                        @endcan
 
                         @can('division-list')
                         <li class="sidebar-item">

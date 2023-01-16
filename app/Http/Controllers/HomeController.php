@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RequestItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $request_items = RequestItem::count();
-        return view('home', compact('request_items'));
+        $user = User::count();
+        return view('home', compact('request_items', 'user'));
     }
 }

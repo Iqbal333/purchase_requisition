@@ -5,6 +5,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListRequestController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
@@ -40,4 +41,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('request_items', RequestItemsController::class);
     Route::resource('division', DivisionController::class);
     Route::resource('employee', EmployeeController::class);
+
+    Route::resource('list_request', ListRequestController::class);
 });

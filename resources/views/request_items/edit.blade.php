@@ -61,12 +61,7 @@
                                     <strong>Division:</strong>
                                     <select name="division_id" id="division" class="form-select choices" required>
                                         <option value="" selected hidden>--Choose Division--</option>
-                                        {{-- @foreach($divisions as $division)
-                                            <option value="{{ $division->id ?? '' }}">{{ $division->division_name ?? '' }}</option>
-                                        @endforeach --}}
-
                                         @foreach($divisions as $division)
-
                                             <option value="{{ $division->id ?? '' }}" @if($division->id == $request_items->division->id) selected @endif {{ (old('division_id', $division->division_id)) }}>{{ $division->division_name ?? '' }}</option>
                                         @endforeach
                                     </select>

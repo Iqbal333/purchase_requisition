@@ -23,7 +23,9 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
+                            <th>Request Number</th>
                             <th>Name</th>
+                            <th>Description</th>
                             <th width="280px">Action</th>
                         </tr>
                     </thead>
@@ -32,6 +34,8 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->request_no }}</td>
+                                <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->description }}</td>
                                 <td>
                                     @can('request_items-show')
                                         <a class="btn btn-success" href="{{ route('request_items.show', $item->id) }}">Show</a>

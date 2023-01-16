@@ -62,7 +62,7 @@
                                     <select name="division_id" id="division" class="form-select choices" required>
                                         <option value="" selected hidden>--Choose Division--</option>
                                         @foreach($divisions as $division)
-                                            <option value="{{ $division->id ?? '' }}">{{ $division->division_name ?? '' }}</option>
+                                            <option value="{{ $division->id ?? '' }}" @if($division->id == $request_items->division->id) selected @endif {{ (old('division_id', $division->division_id)) }}>{{ $division->division_name ?? '' }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -173,11 +173,6 @@
                                     @endif
 
                                 </tbody>
-                                <tfoot>
-                                    <td colspan="7">
-                                        <button class="btn btn-sm btn-info" id="btn_add" type="button">+ Add Item</button>
-                                    </td>
-                                </tfoot>
                             </table>
                         </div>
 

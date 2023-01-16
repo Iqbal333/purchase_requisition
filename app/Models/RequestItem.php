@@ -18,6 +18,8 @@ class RequestItem extends Model
         'description',
     ];
 
+
+
     public function division()
     {
         return $this->belongsTo('App\Models\Division');
@@ -26,6 +28,11 @@ class RequestItem extends Model
     public function items()
     {
         return $this->hasMany('App\Models\Item');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 
 }

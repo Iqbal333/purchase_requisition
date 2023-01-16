@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RequestItemsController;
+use App\Http\Controllers\RequestListController;
 use Illuminate\Support\Facades\Auth;
 
 /*

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Division;
 use App\Models\Item;
 use App\Models\RequestItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class RequestItemsController extends Controller
     {
         $user = Auth::id();
         $request_items = RequestItem::where('user_id', '=', $user)->latest()->get();
-        // $request_items = RequestItem::latest()->get();
+
         return view('request_items.index', compact('request_items'));
     }
 

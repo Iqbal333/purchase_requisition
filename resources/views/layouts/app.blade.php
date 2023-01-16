@@ -62,7 +62,7 @@
                         @endcan
 
                         <li class="sidebar-item ">
-                            <a href="javascript:void()" class='sidebar-link'>
+                            <a href="{{ url('request_items_approve') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Request List</span>
                             </a>

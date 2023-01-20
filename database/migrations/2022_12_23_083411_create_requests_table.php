@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('division_id')->constrained('divisions');
             $table->string('request_no', 20)->unique();
             $table->text('description')->nullable();
+            $table->enum('status', ['Approve', 'Reject', 'Pending'])->default('Pending')->nullable();
             $table->timestamps();
         });
     }

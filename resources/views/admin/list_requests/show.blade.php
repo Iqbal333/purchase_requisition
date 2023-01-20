@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('request_items.update', $request_items->id) }}" method="POST" id="formAdd">
+                    <form action="{{ route('list_request.update', $request_items->id) }}" method="POST" id="formAdd">
 
                         @include('includes.notification')
 
@@ -38,7 +38,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="helpInputTop">No Pengajuan</label>
-                                    <input type="text" name="request_no" value="{{ $request_items->request_no }}" class="form-control" id="helpInputTop">
+                                    <input type="text" name="request_no" readonly value="{{ $request_items->request_no }}" class="form-control" id="helpInputTop">
                                 </div>
                             </div>
 
@@ -61,9 +61,9 @@
                                 <div class="form-group">
                                     <strong>Division:</strong>
                                     <select name="division_id" id="division" class="form-select choices" required>
-                                        <option value="" selected hidden>--Choose Division--</option>
+                                        <option disabled value="" selected hidden>--Choose Division--</option>
                                         @foreach($divisions as $division)
-                                            <option value="{{ $division->id ?? '' }}" @if($division->id == $request_items->division->id) selected @endif {{ (old('division_id', $division->division_id)) }}>{{ $division->division_name ?? '' }}</option>
+                                            <option disabled value="{{ $division->id ?? '' }}" @if($division->id == $request_items->division->id) selected @endif {{ (old('division_id', $division->division_id)) }}>{{ $division->division_name ?? '' }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label for="helperText">Description</label>
                                 <p><small class="text-muted">Find helper text here for given textbox.</small></p>
-                                <textarea name="description" class="form-control" id="" cols="10" rows="5">{{ $request_items->description }}</textarea>
+                                <textarea name="description" readonly class="form-control" id="" cols="10" rows="5">{{ $request_items->description }}</textarea>
                             </div>
 
                             {{-- <label for="">Test Format Rupiah</label>
@@ -100,19 +100,19 @@
                                     @if(count($request_items->items) === 0)
                                         <tr>
                                             <td>
-                                                <input type="text" name="item[0]" class="form-control">
+                                                <input type="text" readonly name="item[0]" class="form-control">
                                             </td>
                                             <td>
-                                                <input type="number" name="unit_price[0]" class="form-control">
+                                                <input type="number" readonly name="unit_price[0]" class="form-control">
                                             </td>
                                             <td>
-                                                <input type="number" name="qty[0]"  class="form-control">
+                                                <input type="number" readonly name="qty[0]"  class="form-control">
                                             </td>
                                             <td>
-                                                <input type="number" name="total[0]" class="form-control">
+                                                <input type="number" readonly name="total[0]" class="form-control">
                                             </td>
                                             <td>
-                                                <input type="text" name="remark[0]" class="form-control">
+                                                <input type="text" readonly name="remark[0]" class="form-control">
                                             </td>
                                             <td></td>
                                         </tr>
@@ -123,19 +123,19 @@
 
                                                 <tr>
                                                     <td>
-                                                        <input type="text" name="item[{{ $key }}]" id="item_{{ $key }}" class="form-control" value="{{ old('item')[$key] }}">
+                                                        <input type="text" readonly name="item[{{ $key }}]" id="item_{{ $key }}" class="form-control" value="{{ old('item')[$key] }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="unit_price[{{ $key }}]" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}">
+                                                        <input type="number" readonly name="unit_price[{{ $key }}]" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="qty[{{ $key }}]" id="qty_{{ $key }}" class="form-control" value="{{ old('qty')[$key] }}">
+                                                        <input type="number" readonly name="qty[{{ $key }}]" id="qty_{{ $key }}" class="form-control" value="{{ old('qty')[$key] }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}">
+                                                        <input type="number" readonly name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}">
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="remark[{{ $key }}]" id="remark_{{ $key }}" class="form-control" value="{{ old('remark')[$key] }}">
+                                                        <input type="text" readonly name="remark[{{ $key }}]" id="remark_{{ $key }}" class="form-control" value="{{ old('remark')[$key] }}">
                                                     </td>
                                                     <td>
                                                         {!! $key !==0 ? '<button type="button" class="btn btn-sm btn-danger btn-delete" >X</button> ' : '' !!}
@@ -150,19 +150,19 @@
 
                                                 <tr>
                                                     <td>
-                                                        <input type="text" name="item[{{ $item }}]" id="item_0" value="{{ $val->item }}" class="form-control">
+                                                        <input type="text" readonly name="item[{{ $item }}]" id="item_0" value="{{ $val->item }}" class="form-control">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="unit_price[{{ $item }}]" id="unit_price[0]" value="{{ $val->unit_price }}" class="form-control">
+                                                        <input type="number" readonly name="unit_price[{{ $item }}]" id="unit_price[0]" value="{{ $val->unit_price }}" class="form-control">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="qty[{{ $item }}]" id="qty_0" value="{{ $val->qty }}" class="form-control">
+                                                        <input type="number" readonly name="qty[{{ $item }}]" id="qty_0" value="{{ $val->qty }}" class="form-control">
                                                     </td>
                                                     <td>
-                                                        <input type="number" name="total[{{ $item }}]" id="total_0" value="{{ $val->total }}" class="form-control">
+                                                        <input type="number" readonly name="total[{{ $item }}]" id="total_0" value="{{ $val->total }}" class="form-control">
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="remark[{{ $item }}]" id="remark[0]" value="{{ $val->remark }}" class="form-control">
+                                                        <input type="text" readonly name="remark[{{ $item }}]" id="remark[0]" value="{{ $val->remark }}" class="form-control">
                                                     </td>
                                                     <td>
                                                         {!! $item !==0 ? '<button type="button" class="btn btn-sm btn-danger btn-delete" >X</button> ' : '' !!}
@@ -174,16 +174,29 @@
                                     @endif
 
                                 </tbody>
-                                <tfoot>
-                                    <td colspan="7">
-                                        <button class="btn btn-sm btn-info" id="btn_add" type="button">+ Add Item</button>
-                                    </td>
-                                </tfoot>
                             </table>
                         </div>
 
-                        <button class="btn btn-md btn-warning float-end" id="btn_save" type="submit">Update</button>
+                        @can('approve_request')
+                            <div class="d-flex mt-3">
+                                <div class="form-check mx-3 px-3">
+                                    <input class="form-check-input" type="radio" name="status" value="Approve" id="flexRadioDefault1">
+                                    <label class="form-check-label btn btn-primary" for="flexRadioDefault1">
+                                        Approve
+                                    </label>
+                                </div>
+                                <div class="form-check mx-3 px-3">
+                                    <input class="form-check-input" type="radio" name="status" value="Reject" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label btn btn-danger" for="flexRadioDefault2">
+                                        Reject
+                                    </label>
+                                </div>
+                            </div>
 
+
+                        <button class="btn btn-md btn-primary float-end" id="btn_save" type="submit">Submit</button>
+
+                        @endcan
                     </form>
                 </div>
             </div>

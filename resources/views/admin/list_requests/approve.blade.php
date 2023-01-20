@@ -25,6 +25,7 @@
                             <th>#</th>
                             <th>Request Number</th>
                             <th>Name</th>
+                            <th>Division</th>
                             <th>Description</th>
                             <th width="280px">Action</th>
                         </tr>
@@ -35,19 +36,21 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->request_no }}</td>
                                 <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->division->division_name }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
-                                    @can('request_items-show')
-                                        <a class="btn btn-success" href="{{ route('request_items.show', $item->id) }}">Show</a>
+                                    @can('list_request-show')
+                                        <a class="btn btn-success" href="{{ route('list_request.show', $item->id) }}">Show</a>
                                     @endcan
-                                    @can('request_items-edit')
-                                        <a class="btn btn-primary" href="{{ route('request_items.edit', $item->id) }}">Approve</a>
+                                    @can('list_request-edit')
+                                        <a class="btn btn-primary" href="{{ route('list_request.edit', $item->id) }}">Edit</a>
                                     @endcan
                                     @can('request_items-delete')
                                         {!! Form::open(['method' => 'DELETE','route' => ['request_items.destroy', $item->id], 'onsubmit' => 'return confirm("Anda yakin akan menghapus data ini?")', 'style'=>'display:inline']) !!}
-                                        {!! Form::submit('Reject', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
                                     @endcan
+
                                 </td>
                             </tr>
                         @endforeach

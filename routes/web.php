@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RequestItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EmployeeController;
@@ -42,5 +43,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('division', DivisionController::class);
     Route::resource('employee', EmployeeController::class);
 
+    Route::get('/approve', [ListRequestController::class, 'approve'])->name('approve.request');
+    Route::get('/reject', [ListRequestController::class, 'reject']);
     Route::resource('list_request', ListRequestController::class);
 });

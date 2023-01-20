@@ -14,7 +14,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                <h6 class="text-muted font-semibold">Total Request Item</h6>
+                                <h6 class="text-muted font-semibold">Request Item</h6>
                                 <h6 class="font-extrabold mb-0">{{ $request_items}}</h6>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                <h6 class="text-muted font-semibold">Following</h6>
-                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                <h6 class="text-muted font-semibold">Total Division</h6>
+                                <h6 class="font-extrabold mb-0">{{ $division }}</h6>
                             </div>
                         </div>
                     </div>
@@ -65,8 +65,8 @@
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                <h6 class="text-muted font-semibold">Saved Post</h6>
-                                <h6 class="font-extrabold mb-0">112</h6>
+                                <h6 class="text-muted font-semibold">Total Pending</h6>
+                                <h6 class="font-extrabold mb-0">{{ $total_request_pending }}</h6>
                             </div>
                         </div>
                     </div>
@@ -207,8 +207,8 @@
                         <img src="assets/images/faces/1.jpg" alt="Face 1">
                     </div>
                     <div class="ms-3 name">
-                        <h5 class="font-bold">John Duck</h5>
-                        <h6 class="text-muted mb-0">@johnducky</h6>
+                        <h5 class="font-bold">{{ auth()->user()->name }}</h5>
+                        <h6 class="text-muted mb-0">{{ auth()->user()->email }}</h6>
                     </div>
                 </div>
             </div>

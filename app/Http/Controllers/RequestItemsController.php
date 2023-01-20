@@ -53,7 +53,6 @@ class RequestItemsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         //'price' => (float) str_replace('.', '', $request->price),
         $this->validate($request, [
             'user_id' => 'required',
@@ -82,12 +81,12 @@ class RequestItemsController extends Controller
             $request_items->division_id = $request->division_id;
             $request_items->request_no = $request->request_no;
             $request_items->description = $request->description;
+            $request_items->status = $request->status;
 
             $request_items->save();
 
         } catch (\Exception $e) {
             DB::rollback();
-            return $request_items;
             return redirect('/request_items')->withInput()->with('error-msg', 'Gagal Simpan Permintaan Barang');
         }
 
@@ -178,16 +177,16 @@ class RequestItemsController extends Controller
 
         try {
 
-            // $invoice = new Invoice;
-
             $request_items->user_id = $request->user_id;
             $request_items->division_id = $request->division_id;
             $request_items->request_no = $request->request_no;
             $request_items->description = $request->description;
+            $request_items->status = $request->status;
 
             $request_items->update();
         } catch (\Exception $e) {
             DB::rollback();
+            // dd($request_items);
             return redirect('/request_items')->withInput()->with('error-msg', 'Gagal Update Request Items');
         }
 

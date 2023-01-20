@@ -16,6 +16,7 @@ class RequestItem extends Model
         'division_id',
         'request_no',
         'description',
+        'status'
     ];
 
 

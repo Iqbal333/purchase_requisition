@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
 use App\Models\RequestItem;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,6 +28,9 @@ class HomeController extends Controller
     {
         $request_items = RequestItem::count();
         $user = User::count();
-        return view('home', compact('request_items', 'user'));
+        $division = Division::count();
+        $total_request_pending = RequestItem::where('status', '=', 'Pending')->count();
+
+        return view('home', compact('request_items', 'user', 'division', 'total_request_pending'));
     }
 }

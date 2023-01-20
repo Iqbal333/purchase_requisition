@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('request_items.update', $request_items->id) }}" method="POST" id="formAdd">
+                    <form action="{{ route('list_request.update', $request_items->id) }}" method="POST" id="formAdd">
 
                         @include('includes.notification')
 

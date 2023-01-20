@@ -44,7 +44,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="basicInput">Nama</label>
-                                    <input type="text" name="user_id" value="{{ auth()->user()->id }}" readonly class="form-control" id="basicInput" placeholder="">
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" readonly class="form-control" id="basicInput" placeholder="">
+                                    <input type="text" value="{{ auth()->user()->name }}" readonly class="form-control" id="basicInput" placeholder="">
                                 </div>
                             </div>
 

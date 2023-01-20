@@ -39,11 +39,11 @@
                                 <td>{{ $item->division->division_name }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
-                                    @can('request_items-show')
-                                        <a class="btn btn-success" href="{{ route('request_items.show', $item->id) }}">Show</a>
+                                    @can('list_request-show')
+                                        <a class="btn btn-success" href="{{ route('list_request.show', $item->id) }}">Show</a>
                                     @endcan
-                                    @can('request_items-edit')
-                                        <a class="btn btn-primary" href="{{ route('request_items.edit', $item->id) }}">Edit</a>
+                                    @can('list_request-edit')
+                                        <a class="btn btn-primary" href="{{ route('list_request.edit', $item->id) }}">Edit</a>
                                     @endcan
                                     @can('request_items-delete')
                                         {!! Form::open(['method' => 'DELETE','route' => ['request_items.destroy', $item->id], 'onsubmit' => 'return confirm("Anda yakin akan menghapus data ini?")', 'style'=>'display:inline']) !!}

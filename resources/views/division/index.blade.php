@@ -40,7 +40,7 @@
                                         <a class="btn btn-primary" href="{{ route('division.edit',$division->id) }}">Edit</a>
                                     @endcan
                                     @can('division-delete')
-                                        {!! Form::open(['method' => 'DELETE','route' => ['division.destroy', $division->id],'style'=>'display:inline']) !!}
+                                        {!! Form::open(['method' => 'DELETE','route' => ['division.destroy', $division->id], 'onsubmit' => 'return confirm("Anda yakin akan menghapus data ini?")', 'style'=>'display:inline']) !!}
                                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
                                     @endcan

@@ -269,11 +269,11 @@
                                             <h6 class="mb-0 text-gray-600">{{ auth()->user()->name }}</h6>
                                             {{-- <p class="mb-0 text-sm text-gray-600">Administrator</p> --}}
                                         </div>
-                                        <div class="user-img d-flex align-items-center">
+                                        {{-- <div class="user-img d-flex align-items-center">
                                             <div class="avatar avatar-md">
                                                 <img src="{{ asset('assets/images/faces/1.jpg') }}">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
@@ -326,9 +326,12 @@
 <script src="{{ asset('assets/js/pages/simple-datatables.js') }}"></script>
 <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
 <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
+{{-- <script src="{{ asset('assets/extensions/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('assets/js/pages/ui-chartjs.js') }}"></script> --}}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
 @stack('scripts')
+@yield('grafik')
 
 </body>
 </html>

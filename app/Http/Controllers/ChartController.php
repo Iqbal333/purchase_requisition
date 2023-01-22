@@ -21,4 +21,17 @@ class ChartController extends Controller
             'results' => $engagement
         ], 200);
     }
+
+    public function status_request()
+    {
+        $request_item = RequestItem::select('status', DB::raw('count(*) as totalStatus'))
+        ->groupBy('status')
+        ->get();
+
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'results' => $request_item
+        ], 200);
+    }
 }

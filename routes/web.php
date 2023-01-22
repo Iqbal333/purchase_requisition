@@ -49,4 +49,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('list_request', ListRequestController::class);
 
     Route::get('/engagement', [ChartController::class, 'engagement'])->name('engagement');
+    Route::get('/status_request', [ChartController::class, 'status_request'])->name('status.request');
 });

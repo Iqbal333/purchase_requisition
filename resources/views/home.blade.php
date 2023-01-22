@@ -2,7 +2,7 @@
 @section('content')
 
 <section class="row">
-    <div class="col-12 col-lg-9">
+    <div class="col-12">
         <div class="row">
             <div class="col-6 col-lg-3 col-md-6">
                 <div class="card">
@@ -81,7 +81,7 @@
                             <h4 class="card-title">Grafik Permintaan Barang</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart"></canvas>
+                            <canvas id="myChart" height="85"></canvas>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-lg-3">
+    {{-- <div class="col-12 col-lg-3">
         <div class="card">
             <div class="card-body py-4 px-4">
                 <div class="d-flex align-items-center">
@@ -106,14 +106,15 @@
 
         <div class="card">
             <div class="card-header">
-                <h4>Visitors Profile</h4>
+                <h4>Status Permintaan</h4>
             </div>
             <div class="card-body">
-                <div id="chart-visitors-profile"></div>
-                {{-- <div id="pie"></div> --}}
+                <div id="statusChart"></div>
             </div>
         </div>
+
     </div>
+     --}}
 </section>
 
 @endsection
@@ -151,35 +152,12 @@
             }
         });
 
-        let departureChart = new Chart(document.getElementById('departureChart').getContext('2d'), {
-            type: 'pie',
-            data: {
-                datasets: [{
-                    data: [0, 0],
-                    backgroundColor: [
-                        '#421C52',
-                        'yellow',
-                    ],
-                }],
-                labels: ['AKAP', 'AKDP']
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'bottom',
-                },
-                animation: {
-                    animateScale: true,
-                    animateRotate: true
-                }
-            }
-        });
-
         $.ajax({
             url: `/engagement`,
             type: 'GET',
             dataType: 'JSON',
             success: ({ results }) => {
+                console.log(results);
                 if (results.length !== 0){
                     results.forEach(v => {
                         myChart.data.datasets[0].data[v.monthKey -1] = v.totalRequestItem
@@ -187,33 +165,6 @@
                 }
 
                 myChart.update()
-            },
-            error: err => {
-
-            },
-            complete: () => {
-
-            }
-        })
-
-        $.ajax({
-            url: `/departure`,
-            type: 'GET',
-            dataType: 'JSON',
-            success: ({ results }) => {
-                if (results.length !== 0){
-                    results.forEach(v => {
-                        let index
-
-                        if(v.departure === 'Akap')
-                            index = 0;
-                        else if (v.departure === 'Akdp')
-                            index = 1;
-                        departureChart.data.datasets[0].data[index] = v.totalDeparture
-                    })
-                }
-
-                departureChart.update()
             },
             error: err => {
 

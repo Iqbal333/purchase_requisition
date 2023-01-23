@@ -14,12 +14,13 @@
                 </span>
             </div>
             <div class="card-body">
-                <table class="table">
+                <table class="table" id="table1">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Division</th>
                             <th>Roles</th>
                             <th width="280px">Action</th>
                         </tr>
@@ -30,6 +31,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->division->division_name }}</td>
                                 <td>
                                     @if(!empty($user->getRoleNames()))
                                         @foreach($user->getRoleNames() as $val)
@@ -52,7 +54,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $data->render() }}
             </div>
         </div>
     </div>

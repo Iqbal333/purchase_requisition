@@ -16,7 +16,7 @@
                 @endcan
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table class="table table-hover" id="table1">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
@@ -44,7 +44,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $data->render() }}
             </div>
         </div>
     </div>

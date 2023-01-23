@@ -41,8 +41,7 @@ class RequestItemsController extends Controller
      */
     public function create()
     {
-        $divisions = Division::get();
-        return view('request_items.create', compact('divisions'));
+        return view('request_items.create');
     }
 
     /**

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Division;
 use App\Models\RequestItem;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ListRequestController extends Controller
@@ -17,7 +19,11 @@ class ListRequestController extends Controller
     public function index()
     {
         $request_items = RequestItem::latest()->get();
+        // return view('admin.list_requests.index', compact('request_items'));
+        // $user = Auth::id();
+        // $request_items = RequestItem::where('user_id', '=', $user)->latest()->get();
 
+        // @dd($user);
         return view('admin.list_requests.index', compact('request_items'));
     }
 

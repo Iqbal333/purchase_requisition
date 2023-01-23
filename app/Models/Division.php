@@ -24,4 +24,9 @@ class Division extends Model
     {
         return $this->hasMany('App\Models\RequestItem');
     }
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User');
+    }
 }

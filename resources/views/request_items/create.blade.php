@@ -58,6 +58,14 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="basicInput">Division</label>
+                                    <input type="hidden" name="division_id" value="{{ auth()->user()->division_id }}" readonly class="form-control" id="basicInput" placeholder="">
+                                    <input type="text" value="{{ auth()->user()->division->division_name }}" readonly class="form-control" id="basicInput" placeholder="">
+                                </div>
+                            </div>
+
+                            {{-- <div class="col-md-4">
+                                <div class="form-group">
                                     <strong>Division:</strong>
                                     <select name="division_id" id="division" class="form-select choices" required>
                                         <option value="" selected hidden>--Choose Division--</option>
@@ -66,7 +74,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label for="helperText">Description</label>

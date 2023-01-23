@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'desc')->paginate(5);
+        $data = User::orderBy('id', 'desc')->get();
 
         return view('users.index', compact('data'));
     }
@@ -43,9 +44,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $divisions = Division::get();
         $roles = Role::pluck('name','name')->all();
 
-        return view('users.create', compact('roles'));
+        return view('users.create', compact('roles', 'divisions'));
     }
 
     /**

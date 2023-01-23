@@ -48,6 +48,7 @@ class PermissionTableSeeder extends Seeder
             'request_items-delete',
             'list_request',
             'list_request-show',
+            'list_approve',
             'approve_request',
             'reject_request'
         ];

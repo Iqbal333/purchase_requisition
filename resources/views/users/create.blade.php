@@ -21,28 +21,46 @@
 
             <div class="card-body">
                 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-                    <div class="form-group">
-                        <strong>Name:</strong>
-                        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Name:</strong>
+                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                        </div>
+                        <div class="form-group">
+                            <strong>Email:</strong>
+                            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                        </div>
+                        <div class="form-group">
+                            <strong>Division:</strong>
+                            <select name="division_id" id="division" class="form-select choices" required>
+                                <option value="" selected hidden>--Choose Division--</option>
+                                @foreach($divisions as $division)
+                                    <option value="{{ $division->id ?? '' }}">{{ $division->division_name ?? '' }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <strong>Email:</strong>
-                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Password:</strong>
+                            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                        </div>
+                        <div class="form-group">
+                            <strong>Confirm Password:</strong>
+                            {!! Form::password('password_confirmation', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                        </div>
+                        <div class="form-group">
+                            <strong>Role:</strong>
+                            {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <strong>Password:</strong>
-                        {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-                    </div>
-                    <div class="form-group">
-                        <strong>Confirm Password:</strong>
-                        {!! Form::password('password_confirmation', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-                    </div>
-                    <div class="form-group">
-                        <strong>Role:</strong>
-                        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <button type="submit" class="btn btn-primary float-end mt-3">Submit</button>
                 {!! Form::close() !!}
+
             </div>
         </div>
     </div>

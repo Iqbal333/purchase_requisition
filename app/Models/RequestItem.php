@@ -19,8 +19,6 @@ class RequestItem extends Model
         'status'
     ];
 
-
-
     public function division()
     {
         return $this->belongsTo('App\Models\Division');

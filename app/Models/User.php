@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'division_id'
     ];
 
     /**
@@ -47,5 +48,15 @@ class User extends Authenticatable
     public function request_items()
     {
         return $this->hasMany('App\Models\RequestItem');
+    }
+
+    // public function division()
+    // {
+    //     return $this->hasOne('App\Models\Division', 'division_id');
+    // }
+
+    public function division()
+    {
+        return $this->belongsTo('App\Models\Division');
     }
 }

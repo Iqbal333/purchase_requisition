@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('request_items.store') }}" method="POST" id="formAdd">
+                    <form action="{{ route('request_items.store') }}" method="POST" id="formAdd" data-parsley-validate>
 
                         @include('includes.notification')
 
@@ -37,7 +37,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="helpInputTop">No Pengajuan</label>
-                                    <input type="text" name="request_no" class="form-control" id="helpInputTop">
+                                    <input type="text" name="request_no" class="form-control" id="helpInputTop" data-parsley-required="true">
                                 </div>
                             </div>
 
@@ -51,9 +51,9 @@
 
                             {{-- <div>
                                 <h3 style="font-variant: small-caps;">penjumlahan dalam bentuk perkalian [*]</h3>
-                                <input name="harga" id="harga" onkeyup="sumHM();" >
-                                <input name="jumlah" id="jumlah" onkeyup="sumHM();" >
-                                <input name="total" id="total">
+                                <input name="harga" id="harga" class="harga" onkeyup="sumHM();" >
+                                <input name="jumlah" id="jumlah" class="jumlah" onkeyup="sumHM();" >
+                                <input name="total" id="total" class="total">
                             </div> --}}
 
                             <div class="col-md-4">
@@ -64,22 +64,10 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-md-4">
-                                <div class="form-group">
-                                    <strong>Division:</strong>
-                                    <select name="division_id" id="division" class="form-select choices" required>
-                                        <option value="" selected hidden>--Choose Division--</option>
-                                        @foreach($divisions as $division)
-                                            <option value="{{ $division->id ?? '' }}">{{ $division->division_name ?? '' }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> --}}
-
                             <div class="form-group">
                                 <label for="helperText">Description</label>
                                 <p><small class="text-muted">Find helper text here for given textbox.</small></p>
-                                <textarea name="description" class="form-control" id="" cols="10" rows="5"></textarea>
+                                <textarea name="description" class="form-control" data-parsley-required="true" id="" cols="10" rows="5"></textarea>
                             </div>
 
                             {{-- <label for="">Test Format Rupiah</label>
@@ -111,13 +99,21 @@
                                                 <input type="text" name="item[{{ $key }}]" id="item_{{ $key }}" class="form-control" value="{{ old('item')[$key] }}">
                                             </td>
                                             <td>
-                                                <input type="number" name="unit_price[{{ $key }}]" onkeyup="sumHM();" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}">
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                    <input type="number" name="unit_price[{{ $key }}]" onkeyup="sumHM();" id="unit_price_{{ $key }}" value="{{ old('unit_price')[$key] }}" class="form-control" aria-describedby="basic-addon1">
+                                                </div>
+                                                {{-- <input type="number" name="unit_price[{{ $key }}]" onkeyup="sumHM();" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}"> --}}
                                             </td>
                                             <td>
                                                 <input type="number" name="qty[{{ $key }}]" onkeyup="sumHM();" id="qty_{{ $key }}" class="form-control" value="{{ old('qty')[$key] }}">
                                             </td>
                                             <td>
-                                                <input type="number" name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}">
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                    <input type="number" name="total[{{ $key }}]" onkeyup="sumHM();" id="total_{{ $key }}" value="{{ old('total')[$key] }}" class="form-control" aria-describedby="basic-addon1">
+                                                </div>
+                                                {{-- <input type="number" name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}"> --}}
                                             </td>
                                             <td>
                                                 <input type="text" name="remark[{{ $key }}]" id="remark_{{ $key }}" class="form-control" value="{{ old('remark')[$key] }}">
@@ -136,13 +132,21 @@
                                             <input type="text" name="item[0]" id="item_0" class="form-control">
                                         </td>
                                         <td>
-                                            <input type="number" name="unit_price[0]" id="unit_price_0" class="form-control">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                <input type="number" name="unit_price[0]" onkeyup="sumHM();" id="unit_price_0" class="form-control" aria-describedby="basic-addon1">
+                                            </div>
+                                            {{-- <input type="number" name="unit_price[0]"  onkeyup="sumHM();" id="unit_price_0" class="form-control"> --}}
                                         </td>
                                         <td>
-                                            <input type="number" name="qty[0]" id="qty_0" class="form-control">
+                                            <input type="number" name="qty[0]"  onkeyup="sumHM();" id="qty_0" class="form-control">
                                         </td>
                                         <td>
-                                            <input type="number" name="total[0]" id="total_0" class="form-control">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                <input type="number" name="total[0]" onkeyup="sumHM();" id="total_0" class="form-control" aria-describedby="basic-addon1">
+                                            </div>
+                                            {{-- <input type="number" name="total[0]" id="total_0" class="form-control"> --}}
                                         </td>
                                         <td>
                                             <input type="text" name="remark[0]" id="remark_0" class="form-control">
@@ -188,13 +192,19 @@
                             <input type="text" name="item[${count}]" id="item_${count}" class="form-control">
                         </td>
                         <td>
-                            <input type="number" name="unit_price[${count}]" id="unit_price_${count}" class="form-control">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                <input type="number" name="unit_price[${count}]" onkeyup="sumHM();" id="unit_price_${count}" class="form-control" aria-describedby="basic-addon1">
+                            </div>
                         </td>
                         <td>
                             <input type="number" name="qty[${count}]" id="qty_${count}" class="form-control tanpa-rupiah">
                         </td>
                         <td>
-                            <input type="number" name="total[${count}]" id="total_${count}" class="form-control">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                <input type="number" name="total[${count}]" id="total_${count}" class="form-control" aria-describedby="basic-addon1">
+                            </div>
                         </td>
                         <td>
                             <input type="text" name="remark[${count}]" id="remark_${count}" class="form-control">
@@ -219,13 +229,13 @@
     <script type="text/javascript">
         function sumHM()
         {
-            var unit_price = document.getElementById('harga').value;
-            var qty = document.getElementById('jumlah').value;
+            var unit_price = document.getElementById('unit_price_0').value;
+            var qty = document.getElementById('qty_0').value;
             var result = 0;
             result = parseInt(unit_price) * parseInt(qty);
 
             if (!isNaN(result)) {
-                document.getElementById('total').value = result;
+                document.getElementById('total_0').value = result;
             }
         }
     </script>

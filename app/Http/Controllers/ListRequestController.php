@@ -18,12 +18,10 @@ class ListRequestController extends Controller
      */
     public function index()
     {
-        $request_items = RequestItem::latest()->get();
-        // return view('admin.list_requests.index', compact('request_items'));
-        // $user = Auth::id();
-        // $request_items = RequestItem::where('user_id', '=', $user)->latest()->get();
+        $divisionId = Auth::user()->division_id;
 
-        // @dd($user);
+        $request_items = RequestItem::where('division_id', $divisionId)->latest()->get();
+
         return view('admin.list_requests.index', compact('request_items'));
     }
 

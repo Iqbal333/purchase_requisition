@@ -103,7 +103,11 @@
                                                 <input type="text" readonly name="item[0]" class="form-control">
                                             </td>
                                             <td>
-                                                <input type="number" readonly name="unit_price[0]" class="form-control">
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                    <input type="number" name="unit_price[0]" readonly class="form-control" aria-describedby="basic-addon1">
+                                                </div>
+                                                {{-- <input type="number" readonly name="unit_price[0]" class="form-control"> --}}
                                             </td>
                                             <td>
                                                 <input type="number" readonly name="qty[0]"  class="form-control">
@@ -126,13 +130,19 @@
                                                         <input type="text" readonly name="item[{{ $key }}]" id="item_{{ $key }}" class="form-control" value="{{ old('item')[$key] }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" readonly name="unit_price[{{ $key }}]" id="unit_price_{{ $key }}" class="form-control" value="{{ old('unit_price')[$key] }}">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                            <input type="number" readonly name="unit_price[{{ $key }}]" id="unit_price_{{ $key }}" class="form-control" aria-describedby="basic-addon1">
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <input type="number" readonly name="qty[{{ $key }}]" id="qty_{{ $key }}" class="form-control" value="{{ old('qty')[$key] }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" readonly name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                            <input type="number" readonly name="total[{{ $key }}]" id="total_{{ $key }}" class="form-control" value="{{ old('total')[$key] }}" aria-describedby="basic-addon1">
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <input type="text" readonly name="remark[{{ $key }}]" id="remark_{{ $key }}" class="form-control" value="{{ old('remark')[$key] }}">
@@ -153,13 +163,19 @@
                                                         <input type="text" readonly name="item[{{ $item }}]" id="item_0" value="{{ $val->item }}" class="form-control">
                                                     </td>
                                                     <td>
-                                                        <input type="number" readonly name="unit_price[{{ $item }}]" id="unit_price[0]" value="{{ $val->unit_price }}" class="form-control">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                            <input type="number" readonly name="unit_price[{{ $item }}]" id="unit_price[0]" value="{{ $val->unit_price }}" class="form-control" aria-describedby="basic-addon1">
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <input type="number" readonly name="qty[{{ $item }}]" id="qty_0" value="{{ $val->qty }}" class="form-control">
                                                     </td>
                                                     <td>
-                                                        <input type="number" readonly name="total[{{ $item }}]" id="total_0" value="{{ $val->total }}" class="form-control">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                            <input type="number" readonly name="total[{{ $item }}]" id="total_0" value="{{ $val->total }}" class="form-control" aria-describedby="basic-addon1">
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <input type="text" readonly name="remark[{{ $item }}]" id="remark[0]" value="{{ $val->remark }}" class="form-control">
@@ -222,13 +238,19 @@
                             <input type="text" name="item[${count}]" id="item_${count}" class="form-control">
                         </td>
                         <td>
-                            <input type="number" name="unit_price[${count}]" id="unit_price_${count}" class="form-control">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                <input type="number" name="unit_price[${count}]" id="unit_price_${count}" class="form-control" aria-describedby="basic-addon1">
+                            </div>
                         </td>
                         <td>
                             <input type="number" name="qty[${count}]" id="qty_${count}" class="form-control tanpa-rupiah">
                         </td>
                         <td>
-                            <input type="number" name="total[${count}]" id="total_${count}" class="form-control">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                <input type="number" name="total[${count}]" id="total_${count}" class="form-control" aria-describedby="basic-addon1">
+                            </div>
                         </td>
                         <td>
                             <input type="text" name="remark[${count}]" id="remark_${count}" class="form-control">

@@ -86,7 +86,7 @@ class ListRequestController extends Controller
         $request_items = RequestItem::findOrFail($id);
 
         $this->validate($request, [
-            'request_no' => 'required|min:5|max:20',
+            'request_no' => 'required|min:5|max:50',
             'user_id' => 'required',
             'division_id' => 'required',
             'description' => 'required',

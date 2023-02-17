@@ -50,13 +50,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div>
-                                <h3 style="font-variant: small-caps;">penjumlahan dalam bentuk perkalian [*]</h3>
-                                <input name="harga" id="harga" onkeyup="sumHM();" >
-                                <input name="jumlah" id="jumlah" onkeyup="sumHM();" >
-                                <input name="total" id="total">
-                            </div> --}}
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <strong>Division:</strong>
@@ -75,11 +68,6 @@
                                 <textarea name="description" readonly class="form-control" id="" cols="10" rows="5">{{ $request_items->description }}</textarea>
                             </div>
 
-                            {{-- <label for="">Test Format Rupiah</label>
-                            <div class="input-group mb-3 mt-2">
-                                <span class="input-group-text" id="basic-addon1">Rp</span>
-                                <input type="text" class="form-control tanpa-rupiah" placeholder="Harga" aria-label="Harga" aria-describedby="basic-addon1">
-                            </div> --}}
                         </div>
 
                         <div class="table-responsive mt-5">
@@ -211,7 +199,7 @@
                         @endcan
 
 
-                        <button class="btn btn-md btn-primary float-end" id="btn_save" type="submit">Submit</button>
+                        {{-- <button class="btn btn-md btn-primary float-end" id="btn_save" type="submit">Submit</button> --}}
 
                     </form>
                 </div>

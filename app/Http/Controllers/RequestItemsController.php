@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GenerateCode;
 use App\Models\Division;
 use App\Models\Item;
 use App\Models\RequestItem;
@@ -56,7 +57,6 @@ class RequestItemsController extends Controller
         $this->validate($request, [
             'user_id' => 'required',
             'division_id' => 'required',
-            'request_no' => 'required|min:5|max:20|unique:requests,request_no',
             'description' => 'required',
 
             'item' => 'required|array',
@@ -78,10 +78,8 @@ class RequestItemsController extends Controller
 
             $request_items->user_id = $request->user_id;
             $request_items->division_id = $request->division_id;
-            $request_items->request_no = $request->request_no;
+            $request_items->request_no = GenerateCode::invoiceNumber();
             $request_items->description = $request->description;
-            $request_items->status = $request->status;
-
             $request_items->save();
 
         } catch (\Exception $e) {
@@ -155,7 +153,6 @@ class RequestItemsController extends Controller
         $request_items = RequestItem::findOrFail($id);
 
         $this->validate($request, [
-            'request_no' => 'required|min:5|max:20',
             'user_id' => 'required',
             'division_id' => 'required',
             'description' => 'required',

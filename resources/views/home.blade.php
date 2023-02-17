@@ -74,47 +74,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Grafik Permintaan Barang</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart" height="85"></canvas>
-                        </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Grafik Permintaan Barang</h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart" height="135"></canvas>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    {{-- <div class="col-12 col-lg-3">
-        <div class="card">
-            <div class="card-body py-4 px-4">
-                <div class="d-flex align-items-center">
-                    <div class="avatar avatar-xl">
-                        <img src="assets/images/faces/1.jpg" alt="Face 1">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Grafik Status Permintaan</h4>
                     </div>
-                    <div class="ms-3 name">
-                        <h5 class="font-bold">{{ auth()->user()->name }}</h5>
-                        <h6 class="text-muted mb-0">{{ auth()->user()->email }}</h6>
+                    <div class="card-body">
+                        <canvas id="pieChart" height="65"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h4>Status Permintaan</h4>
-            </div>
-            <div class="card-body">
-                <div id="statusChart"></div>
-            </div>
-        </div>
-
     </div>
-     --}}
+
 </section>
 
 @endsection
@@ -152,6 +135,31 @@
             }
         });
 
+        let pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [0, 0, 0],
+                    backgroundColor: [
+                        '#ffc107',
+                        'green',
+                        'red',
+                    ],
+                }],
+                labels: ['Pending', 'Approve', 'Reject']
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        });
+
         $.ajax({
             url: `/engagement`,
             type: 'GET',
@@ -165,6 +173,27 @@
                 }
 
                 myChart.update()
+            },
+            error: err => {
+
+            },
+            complete: () => {
+
+            }
+        })
+
+        $.ajax({
+            url: `/status_request`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: ({ results }) => {
+                if (results.length !== 0){
+                    let status = results.map(v => v.totalStatus)
+
+                    pieChart.data.datasets[0].data = status
+                }
+
+                pieChart.update()
             },
             error: err => {
 

@@ -24,7 +24,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo" srcset=""></a>
+                            <a href="javascript:void(0);"><small>CreatSign</small></a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2" opacity=".3"></path><g transform="translate(-210 -1)"><path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path><circle cx="220.5" cy="11.5" r="4"></circle><path d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2"></path></g></g></svg>
@@ -44,7 +44,7 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li
-                            class="sidebar-item active">
+                            class="sidebar-item {{ (request()->is('home')) ? 'active' : '' }}">
                             <a href="{{ url('home') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
@@ -53,7 +53,7 @@
 
                         @can('request_items-list')
                         <li
-                            class="sidebar-item">
+                            class="sidebar-item {{ (request()->is('request_items')) ? 'active' : '' }}">
                             <a href="{{ url('request_items') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Request Items</span>
@@ -62,13 +62,13 @@
                         @endcan
 
                         @can('list_request')
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item {{ (request()->is('list_request')) ? 'active' : '' }}">
                             <a href="{{ url('list_request') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>List Request</span>
                             </a>
                         </li>
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item {{ (request()->is('reject')) ? 'active' : '' }}">
                             <a href="{{ url('reject') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>List Reject</span>
@@ -76,7 +76,7 @@
                         </li>
                         @endcan
                         @can('list_approve')
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item {{ (request()->is('approve')) ? 'active' : '' }}">
                             <a href="{{ url('approve') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>List Approve</span>
@@ -85,7 +85,7 @@
                         @endcan
 
                         @can('division-list')
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ (request()->is('division')) ? 'active' : '' }}">
                             <a href="{{ url('division') }}" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Division</span>
@@ -94,7 +94,7 @@
                         @endcan
 
                         @can('employee-list')
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ (request()->is('employee')) ? 'active' : '' }}">
                             <a href="{{ url('employee') }}" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Employee</span>
@@ -104,7 +104,7 @@
 
                         <li class="sidebar-title">Pages</li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item has-sub">
                             <a href="javascript:void(0);" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
                                 <span>Authentication</span>
@@ -112,33 +112,33 @@
                             <ul class="submenu ">
                                 @guest
                                     @if (Route::has('login'))
-                                        <li class="submenu-item ">
+                                        <li class="submenu-item {{ (request()->is('login')) ? 'active' : '' }}">
                                             <a href="{{ route('login') }}">Login</a>
                                         </li>
                                     @endif
                                     @if (Route::has('register'))
-                                        <li class="submenu-item ">
+                                        <li class="submenu-item {{ (request()->is('register')) ? 'active' : '' }}">
                                             <a href="{{ route('register') }}">Register</a>
                                         </li>
                                     @endif
                                 @else
                                     @can('user-list')
-                                        <li class="submenu-item">
+                                        <li class="submenu-item {{ (request()->is('users')) ? 'active' : '' }}">
                                             <a href="{{ route('users.index') }}">Users</a>
                                         </li>
                                     @endcan
                                     @can('role-list')
-                                        <li class="submenu-item">
+                                        <li class="submenu-item {{ (request()->is('roles')) ? 'active' : '' }}">
                                             <a href="{{ route('roles.index') }}">Roles</a>
                                         </li>
                                     @endcan
                                     @can('permission-list')
-                                        <li class="submenu-item">
+                                        <li class="submenu-item {{ (request()->is('permissions')) ? 'active' : '' }}">
                                             <a href="{{ route('permissions.index') }}">Permission</a>
                                         </li>
                                     @endcan
                                     @can('request_items-list')
-                                        <li class="submenu-item">
+                                        <li class="submenu-item {{ (request()->is('request_items.index')) ? 'active' : '' }}">
                                             <a href="{{ route('request_items.index') }}">Pengajuan Barang</a>
                                         </li>
                                     @endcan
@@ -147,18 +147,12 @@
                                             <a href="{{ route('posts.index') }}">Posts</a>
                                         </li>
                                     @endcan
-                                    <li class="submenu-item ">
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                        <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
-                                            @csrf
-                                        </form>
-                                    </li>
                                 @endguest
 
                             </ul>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        {{-- <li class="sidebar-item has-sub">
                             <a href="javascript:void(0);" class='sidebar-link'>
                                 <i class="bi bi-x-octagon-fill"></i>
                                 <span>Errors</span>
@@ -174,7 +168,7 @@
                                     <a href="error-500.html">500</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
 
                         <li class="sidebar-title">Raise Support</li>
 
@@ -219,18 +213,18 @@
                                         aria-expanded="false">
                                         <i class='bi bi-envelope bi-sub fs-4'></i>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                    {{-- <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                         <li>
                                             <h6 class="dropdown-header">Mail</h6>
                                         </li>
                                         <li><a class="dropdown-item" href="#">No new mail</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li class="nav-item dropdown me-3">
                                     <a class="nav-link active dropdown-toggle text-gray-600" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                                         <i class='bi bi-bell bi-sub fs-4'></i>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end notification-dropdown" aria-labelledby="dropdownMenuButton">
+                                    {{-- <ul class="dropdown-menu dropdown-menu-end notification-dropdown" aria-labelledby="dropdownMenuButton">
                                         <li class="dropdown-header">
                                             <h6>Notifications</h6>
                                         </li>
@@ -259,7 +253,7 @@
                                         <li>
                                             <p class="text-center py-2 mb-0"><a href="#">See all notification</a></p>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                             </ul>
                             <div class="dropdown">
@@ -276,6 +270,7 @@
                                         </div> --}}
                                     </div>
                                 </a>
+
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
                                     <li>
                                         <h6 class="dropdown-header">Hello, {{ auth()->user()->name }}!</h6>
@@ -286,9 +281,17 @@
                                             Settings</a></li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="icon-mid bi bi-box-arrow-left me-2"></i>
+                                            Logout
+                                        </a>
+                                        <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
+                                            @csrf
+                                        </form>
+                                    </li>
                                 </ul>
+
                             </div>
                         </div>
                     </div>

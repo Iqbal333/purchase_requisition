@@ -38,7 +38,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="helpInputTop">No Pengajuan</label>
-                                    <input type="text" name="request_no" value="{{ $request_items->request_no }}" class="form-control" id="helpInputTop">
+                                    <input type="text" readonly name="request_no" value="{{ $request_items->request_no }}" class="form-control" id="helpInputTop">
                                 </div>
                             </div>
 

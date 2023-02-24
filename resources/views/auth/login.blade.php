@@ -68,7 +68,7 @@
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right">
-
+                    <iframe src="https://embed.lottiefiles.com/animation/68312" style="height: 850px; width: 850px;"></iframe>
                 </div>
             </div>
         </div>

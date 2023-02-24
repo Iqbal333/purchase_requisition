@@ -33,7 +33,7 @@
                     <tbody>
                         @foreach ($request_items as $key => $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->request_no }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->division->division_name }}</td>

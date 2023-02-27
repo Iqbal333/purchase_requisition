@@ -30,6 +30,15 @@
                         {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
                     </div>
                     <div class="form-group">
+                        <strong>Division:</strong>
+                        <select name="division_id" id="division" class="form-select choices" required>
+                            <option value="" selected hidden>--Choose Division--</option>
+                            @foreach($divisions as $division)
+                                <option value="{{ $division->id ?? '' }}">{{ $division->division_name ?? '' }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <strong>Password:</strong>
                         {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
                     </div>

@@ -8,7 +8,7 @@ class GenerateCode
 {
     public static function invoiceNumber()
     {
-        $initial = 'INV-AIAM-'.date('Y-m').'-';
+        $initial = 'INV/AIAM/'.date('Y/m').'/';
         $q = DB::table('requests')->select(DB::raw('MAX(RIGHT(request_no, 4)) as kd_max'))->where('request_no', 'like', '%' . $initial . '%');
 
         if($q->count() > 0) {

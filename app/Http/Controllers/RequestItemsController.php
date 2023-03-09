@@ -182,7 +182,6 @@ class RequestItemsController extends Controller
             $request_items->update();
         } catch (\Exception $e) {
             DB::rollback();
-            // dd($request_items);
             return redirect('/request_items')->withInput()->with('error-msg', 'Gagal Update Request Items');
         }
 

@@ -56,8 +56,8 @@
                                         <a class="btn btn-primary" href="{{ route('request_items.edit', $item->id) }}">Edit</a>
                                     @endcan
                                     @can('request_items-delete')
-                                        {!! Form::open(['method' => 'DELETE','route' => ['request_items.destroy', $item->id], 'onsubmit' => 'return confirm("Anda yakin akan menghapus data ini?")', 'style'=>'display:inline']) !!}
-                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::open(['method' => 'DELETE','route' => ['request_items.destroy', $item->id], 'style'=>'display:inline']) !!}
+                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger show_confirm']) !!}
                                         {!! Form::close() !!}
                                     @endcan
 
@@ -70,4 +70,28 @@
         </div>
     </div>
 </div>
+@endsection
+@section('grafik')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+     $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("request_no");
+          event.preventDefault();
+          swal({
+              title: `Anda yakin akan menghapus data ini?`,
+              text: "Data akan dihapus permanent",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+
+</script>
 @endsection

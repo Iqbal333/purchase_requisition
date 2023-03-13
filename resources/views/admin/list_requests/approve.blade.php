@@ -33,7 +33,6 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>Status</th>
                             <th>Request Number</th>
                             <th>Name</th>
                             <th>Division</th>
@@ -46,7 +45,6 @@
                         @foreach ($request_items as $key => $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->status }}</td>
                                 <td>{{ $item->request_no }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->division->division_name }}</td>

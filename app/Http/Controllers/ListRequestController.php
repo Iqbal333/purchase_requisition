@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Division;
 use App\Models\RequestItem;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -158,9 +159,17 @@ class ListRequestController extends Controller
         //
     }
 
-    public function approve()
+    public function approve(Request $request)
     {
-        $request_items = RequestItem::where('status', '=', 'Approve')->latest()->get();
+        if ($request->start_date || $request->end_date) {
+            $start_date = Carbon::parse($request->start_date)->toDateTimeString();
+            $end_date = Carbon::parse($request->end_date)->toDateTimeString();
+            $request_items = RequestItem::whereBetween('created_at', [$start_date, $end_date])
+                ->where('status', '=', 'Approve')
+            ->get();
+        } else {
+            $request_items = RequestItem::where('status', '=', 'Approve')->latest()->get();
+        }
 
         return view('admin.list_requests.approve', compact('request_items'));
     }

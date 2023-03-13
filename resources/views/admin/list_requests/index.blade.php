@@ -19,7 +19,7 @@
                 @endcan
             </div>
             <div class="card-body">
-                <table class="table table-hover" id="table1">
+                <table class="table table-hover table-responsive" id="table1">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
@@ -28,6 +28,7 @@
                             <th>Division</th>
                             <th>Status</th>
                             <th>Description</th>
+                            <th>Request Date</th>
                             <th width="280px">Action</th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@
                                 {{-- Ternary Javascript --}}
                                 {{-- <td>{!! ($item['status']) === 'Approve' ? '<span class="badge bg-success">'.$item['status'].'</span>' : ((($item['status']) === 'Reject') ? '<span class="badge bg-danger">'.$item['status'].'</span>'  : '<span class="badge bg-warning">'.$item['status'].'</span>') !!}</td> --}}
                                 <td>{{ $item->description }}</td>
+                                <td>{{ $item->created_at }}</td>
                                 <td>
                                     @can('request_items-show')
                                         <a class="btn btn-success" href="{{ route('list_request.show', $item->id) }}">Show</a>

@@ -19,13 +19,25 @@
                 @endcan
             </div>
             <div class="card-body">
+                <div class="my-2">
+                    <form action="{{ url('approve') }}" method="GET">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" name="start_date">
+                            <input type="date" class="form-control" name="end_date">
+                            <button class="btn btn-primary" type="submit">Cari</button>
+                        </div>
+                    </form>
+                </div>
                 <table class="table table-hover" id="table1">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
+                            <th>Status</th>
                             <th>Request Number</th>
                             <th>Name</th>
                             <th>Division</th>
+                            <th>Request Date</th>
                             <th>Description</th>
                             <th width="280px">Action</th>
                         </tr>
@@ -34,9 +46,11 @@
                         @foreach ($request_items as $key => $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
+                                <td>{{ $item->status }}</td>
                                 <td>{{ $item->request_no }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->division->division_name }}</td>
+                                <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
                                     @can('list_request-show')

@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/approve', [ListRequestController::class, 'approve'])->name('approve.request');
     Route::get('/reject', [ListRequestController::class, 'reject']);
+    Route::get('/report', [ListRequestController::class, 'report']);
     Route::resource('list_request', ListRequestController::class);
 
     Route::get('/engagement', [ChartController::class, 'engagement'])->name('engagement');

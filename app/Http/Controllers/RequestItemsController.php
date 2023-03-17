@@ -7,6 +7,7 @@ use App\Models\Division;
 use App\Models\Item;
 use App\Models\RequestItem;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Division;
 use App\Models\RequestItem;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -191,5 +192,20 @@ class ListRequestController extends Controller
         session()->flashInput($request->input());
 
         return view('admin.list_requests.reject', compact('request_items'));
+    }
+
+    public function report()
+    {
+        $request_items = RequestItem::get();
+
+        $data = [
+            'title' => 'Permintaan Barang CreatSign',
+            'date'  => date('m/d/Y'),
+            'users' => $request_items
+        ];
+
+        $pdf = Pdf::loadview('admin.list_requests.report', compact('data', 'request_items'));
+
+        return $pdf->download('purchase requisition.pdf');
     }
 }

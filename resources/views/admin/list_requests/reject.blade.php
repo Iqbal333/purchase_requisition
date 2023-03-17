@@ -19,6 +19,14 @@
                 @endcan
             </div>
             <div class="card-body">
+                <form action="{{ url('reject') }}" method="GET">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" value="{{ old('start_date', date('Y-m-d')) }}" name="start_date">
+                        <input type="date" class="form-control" value="{{ old('end_date', date('Y-m-d')) }}" name="end_date">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </form>
                 <table class="table table-hover" id="table1">
                     <thead class="thead-dark">
                         <tr>
@@ -27,6 +35,7 @@
                             <th>Name</th>
                             <th>Division</th>
                             <th>Description</th>
+                            <th>Request Date</th>
                             <th width="280px">Action</th>
                         </tr>
                     </thead>
@@ -37,6 +46,7 @@
                                 <td>{{ $item->request_no }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->division->division_name }}</td>
+                                <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
                                     @can('list_request-show')
@@ -61,3 +71,25 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+     <script>
+        $(document).ready(function () {
+        $('#table1').DataTable( {
+            dom: 'Bfrltip',
+
+          "lengthMenu" : [[25, 50, -1], [25, 50, "All"]],
+            buttons: [{
+                        extend: 'pdf',
+                        text: '<i class="bi bi-file-earmark-pdf">&nbsp; PDF</i>',
+                        className: 'btn btn-sm btn-outline-danger'
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<i class="bi bi-file-earmark-excel">&nbsp; Excel</i>',
+                        className: 'btn btn-sm btn-outline-success'
+                    },
+                ]
+          });
+        });
+    </script>
+@endpush

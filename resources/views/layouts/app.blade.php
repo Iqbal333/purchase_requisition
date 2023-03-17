@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Purchase Requisition Dashboard</title>
+    <title>Purchase Requisition CreatSign</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/simple-datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/datatables.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
 
 </head>
@@ -68,12 +68,6 @@
                                 <span>List Request</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('reject')) ? 'active' : '' }}">
-                            <a href="{{ url('reject') }}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>List Reject</span>
-                            </a>
-                        </li>
                         @endcan
                         @can('list_approve')
                         <li class="sidebar-item {{ (request()->is('approve')) ? 'active' : '' }}">
@@ -83,7 +77,14 @@
                             </a>
                         </li>
                         @endcan
-
+                        @can('list_reject')
+                        <li class="sidebar-item {{ (request()->is('reject')) ? 'active' : '' }}">
+                            <a href="{{ url('reject') }}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>List Reject</span>
+                            </a>
+                        </li>
+                        @endcan
                         @can('division-list')
                         <li class="sidebar-item {{ (request()->is('division')) ? 'active' : '' }}">
                             <a href="{{ url('division') }}" class="sidebar-link">
@@ -319,8 +320,8 @@
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
-<script src="{{ asset('assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-<script src="{{ asset('assets/js/pages/simple-datatables.js') }}"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+<script src="{{ asset('assets/js/pages/datatables.js') }}"></script>
 <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
 <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
 <script src="{{ asset('assets/extensions/chart.js/Chart.min.js') }}"></script>
@@ -328,6 +329,17 @@
 <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/extensions/parsleyjs/parsley.min.js') }}"></script>
 <script src="{{ asset('assets/js/pages/parsley.js') }}"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"></script>
 
 @stack('scripts')
 @yield('grafik')

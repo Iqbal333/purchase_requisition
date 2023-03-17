@@ -171,12 +171,24 @@ class ListRequestController extends Controller
             $request_items = RequestItem::where('status', '=', 'Approve')->latest()->get();
         }
 
+        session()->flashInput($request->input());
+
         return view('admin.list_requests.approve', compact('request_items'));
     }
 
-    public function reject()
+    public function reject(Request $request)
     {
-        $request_items = RequestItem::where('status', '=', 'Reject')->latest()->get();
+        if ($request->start_date || $request->end_date) {
+            $start_date = Carbon::parse($request->start_date)->toDateTimeString();
+            $end_date = Carbon::parse($request->end_date)->toDateTimeString();
+            $request_items = RequestItem::whereBetween('created_at', [$start_date, $end_date])
+                ->where('status', '=', 'Reject')
+                ->get();
+        } else {
+            $request_items = RequestItem::where('status', '=', 'Reject')->latest()->get();
+        }
+
+        session()->flashInput($request->input());
 
         return view('admin.list_requests.reject', compact('request_items'));
     }

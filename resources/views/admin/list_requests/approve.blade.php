@@ -115,6 +115,9 @@
                     },
                     {
                         extend: 'excel',
+                        title: function() {
+                            return "Laporan Permintaan Barang CreatSign";
+                        },
                         text: '<i class="bi bi-file-earmark-excel">&nbsp; Excel</i>',
                         className: 'btn btn-sm btn-outline-success',
                         footer: true,

@@ -19,11 +19,11 @@
                 @endcan
             </div>
             <div class="card-body">
-                <a class="btn btn-sm btn-danger" href="{{ url('/report') }}"><i class="bi bi-file-earmark-pdf">&nbsp; PDF</i></a>
+                {{-- <a class="btn btn-sm btn-danger" href="{{ url('/report') }}"><i class="bi bi-file-earmark-pdf">&nbsp; PDF</i></a> --}}
                 <div class="my-2">
                     <form action="{{ url('approve') }}" method="GET">
                         @csrf
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 input-daterange">
                             <input type="date" class="form-control" value="{{ old('start_date', date('Y-m-d')) }}" name="start_date">
                             <input type="date" class="form-control" value="{{ old('end_date', date('Y-m-d')) }}" name="end_date">
                             <button class="btn btn-primary" type="submit">Cari</button>
@@ -77,12 +77,26 @@
 @push('scripts')
      <script>
         $(document).ready(function () {
+            var currentdate = new Date();
+            const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const d = new Date();
+
+            var datetime = "Dicetak Tanggal " + currentdate.getDate() + " "
+                        + monthNames[d.getMonth()]  + " "
+                        + currentdate.getFullYear() + " "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + " WIB";
+
         $('#table1').DataTable( {
             dom: 'Bfrltip',
 
           "lengthMenu" : [[25, 50, -1], [25, 50, "All"]],
             buttons: [{
                         extend: 'pdf',
+                        messageTop: datetime,
+                        title: function() {
+                            return "Laporan Permintaan Barang CreatSign";
+                        },
                         text: '<i class="bi bi-file-earmark-pdf">&nbsp; PDF</i>',
                         className: 'btn btn-sm btn-outline-danger',
                         footer: true,

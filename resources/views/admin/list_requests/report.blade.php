@@ -1,53 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <title>Daftar Pengajuan Barang</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/report.css')}}" media="all" />
   </head>
-  <body>
-
-    <img class="img-fluid" src="{{ asset('assets/images/logo/logo_creatsign.jpg') }}" style="width: 60px; height: 60px;" alt=""><br>
-    <h2 class="text-center">Laporan Permintaan Barang</h2>
-
-    <table class="table table-lg table-hover" id="table1">
-        <thead class="thead-dark">
-            <tr class="text-center">
-                <th>No</th>
-                <th>Request Number</th>
-                <th>Name</th>
-                <th>Division</th>
-                <th>Request Date</th>
-                <th>Description</th>
-            </tr>
+  <body class="container-fluid">
+    <header class="clearfix">
+      <div id="logo">
+        <img src="{{ asset('assets/images/logo/lg-creatsign.jpg') }}">
+      </div>
+      <h1>PT. ANUGRAH INTI ARTHA MANDIRI</h1>
+      <div id="company" class="clearfix">
+        <div>PT. ANUGRAH INTI ARTHA MANDIRI</div>
+        <div>
+            Jl. Bekasi Tim. Raya IX No. 17 A, <br>
+            RT 04/RW 10, Rawa Bunga <br>
+            Kecamatan Jatinegara, Kota Jakarta Timur, <br>
+            Daerah Khusus Ibukota Jakarta 13350
+        </div>
+        <div>(021) 22897527</div>
+      </div>
+      <div id="project">
+        <div><span>NO</span> {{ $request_items->request_no }}</div>
+        <div><span>DIVISI</span> {{ $request_items->division->division_name }}</div>
+        <div><span>NAMA</span> {{ $request_items->user->name }}</div>
+        <div><span>EMAIL</span> <a href="javascript:void(0);">{{ $request_items->user->email }}</a></div>
+        <div><span>TANGGAL</span> {{ $request_items->created_at }}</div>
+      </div>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">NO</th>
+            <th class="desc">NAMA BARANG</th>
+            <th class="qty">JUMLAH</th>
+            <th class="unit">HARGA</th>
+            <th class="total">TOTAL</th>
+          </tr>
         </thead>
         <tbody>
-            @foreach ($request_items as $key => $item)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td width="180px">{{ $item->request_no }}</td>
-                    <td width="130px">{{ $item->user->name }}</td>
-                    <td>{{ $item->division->division_name }}</td>
-                    <td width="130px">{{ $item->created_at }}</td>
-                    <td>{{ $item->description }}</td>
-                </tr>
+        @foreach ($request_items->items as $item => $val)
+            <tr>
+                <td class="service">{{ $loop->iteration }}</td>
+                <td class="desc">{{ $val->item }}</td>
+                <td class="qty">{{ $val->qty }}</td>
+                <td class="unit">@currency($val->unit_price)</td>
+                <td class="total">@currency($val->total)</td>
+            </tr>
+        @endforeach
+          <tr>
+            <td colspan="4">SUBTOTAL</td>
+            @foreach ($grandtotals as $grandtotal)
+            <td class="total">@currency($grandtotal->grandtotal)</td>
             @endforeach
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+            <td colspan="4" class="grand total">GRAND TOTAL</td>
+            @foreach ($grandtotals as $grandtotal)
+            <td class="grand total">@currency($grandtotal->grandtotal)</td>
+            @endforeach
+          </tr>
         </tbody>
-    </table>
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
+      </table>
+      <div id="notices">
+        <div class="notice">Invoice dibuat oleh komputer dan berlaku tanpa tanda tangan dan stempel.</div>
+      </div>
+    </main>
+    <footer>
+      Invoice dibuat oleh komputer dan berlaku tanpa tanda tangan dan stempel.
+    </footer>
   </body>
 </html>

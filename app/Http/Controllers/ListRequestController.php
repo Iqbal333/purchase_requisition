@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Division;
+use App\Models\Item;
 use App\Models\RequestItem;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -166,10 +167,9 @@ class ListRequestController extends Controller
             $start_date = Carbon::parse($request->start_date)->toDateTimeString();
             $end_date = Carbon::parse($request->end_date)->toDateTimeString();
             $request_items = RequestItem::whereBetween('created_at', [$start_date, $end_date])
-                ->where('status', '=', 'Approve')
             ->get();
         } else {
-            $request_items = RequestItem::where('status', '=', 'Approve')->latest()->get();
+            $request_items = RequestItem::latest()->get();
         }
 
         session()->flashInput($request->input());
@@ -194,18 +194,26 @@ class ListRequestController extends Controller
         return view('admin.list_requests.reject', compact('request_items'));
     }
 
-    public function report()
+    public function report($id)
     {
-        $request_items = RequestItem::get();
+        $user = Auth::id();
+        $divisions = Division::get();
+        $request_items = RequestItem::with('items')->findOrFail($id);
+        $request_item = RequestItem::findOrFail($id);
 
-        $data = [
-            'title' => 'Permintaan Barang CreatSign',
-            'date'  => date('m/d/Y'),
-            'users' => $request_items
-        ];
+        $grandtotals = Item::select(
+            'request_item_id',
+            DB::raw('SUM(total) AS grandtotal')
+        )
+            ->where('request_item_id', '=', $id)
+            ->groupBy('request_item_id')
+            ->get();
 
-        $pdf = Pdf::loadview('admin.list_requests.report', compact('data', 'request_items'));
+
+        $pdf = Pdf::loadview('admin.list_requests.report', compact('divisions', 'request_items', 'grandtotals'));
 
         return $pdf->download('purchase requisition.pdf');
+
+        // return view('admin.list_requests.report', compact('divisions', 'request_items', 'grandtotals'));
     }
 }

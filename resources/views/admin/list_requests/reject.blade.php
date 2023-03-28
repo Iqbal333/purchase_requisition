@@ -36,7 +36,7 @@
                             <th>Division</th>
                             <th>Description</th>
                             <th>Request Date</th>
-                            <th width="280px">Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -38,6 +38,7 @@
                             <th>Name</th>
                             <th>Division</th>
                             <th>Request Date</th>
+                            <th>Status</th>
                             <th>Description</th>
                             <th>Action</th>
                         </tr>
@@ -50,10 +51,22 @@
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->division->division_name }}</td>
                                 <td>{{ $item->created_at }}</td>
+                                <td>
+                                    @if ($item->status == 'Approve')
+                                        <span class="badge bg-primary">Approve</span>
+                                    @elseif ($item->status == 'Reject')
+                                        <span class="badge bg-danger">Reject</span>
+                                    @else
+                                        <span class="badge bg-warning">Pending</span>
+                                    @endif
+                                </td>
                                 <td>{{ $item->description }}</td>
                                 <td>
                                     @can('list_request-show')
-                                        <a class="btn btn-success" href="{{ route('list_request.show', $item->id) }}">Show</a>
+                                        <div class="btn-group">
+                                            <a class="btn btn-success" href="{{ route('list_request.show', $item->id) }}">Show</a>
+                                            <a class="btn btn-danger" target="_blank" href="{{ url('/report', $item->id) }}">Print</a>
+                                        </div>
                                     @endcan
                                     @can('list_request-edit')
                                         <a class="btn btn-primary" href="{{ route('list_request.edit', $item->id) }}">Edit</a>

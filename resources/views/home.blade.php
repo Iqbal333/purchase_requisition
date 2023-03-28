@@ -141,12 +141,12 @@
                 datasets: [{
                     data: [0, 0, 0],
                     backgroundColor: [
-                        '#ffc107',
                         'green',
                         'red',
+                        '#ffc107',
                     ],
                 }],
-                labels: ['Pending', 'Approve', 'Reject']
+                labels: ['Approve', 'Reject', 'Pending']
             },
             options: {
                 responsive: true,

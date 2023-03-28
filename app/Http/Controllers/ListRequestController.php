@@ -199,7 +199,6 @@ class ListRequestController extends Controller
         $user = Auth::id();
         $divisions = Division::get();
         $request_items = RequestItem::with('items')->findOrFail($id);
-        $request_item = RequestItem::findOrFail($id);
 
         $grandtotals = Item::select(
             'request_item_id',
